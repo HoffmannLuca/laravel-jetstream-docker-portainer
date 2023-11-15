@@ -1,3 +1,4 @@
+# FOR LOCAL DEVELOPMENT WITH SAIL
 services:
     laravel.test:
         build:

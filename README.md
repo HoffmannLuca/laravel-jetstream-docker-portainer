@@ -12,6 +12,11 @@
 curl -s "https://laravel.build/put-new-laravel-app-name-here" | bash
 ```
 
+- start the dev environment using sail
+```bash
+sail up -d
+```
+
 - install jetstream by running the following command
 ```bash
 composer require laravel/jetstream
@@ -21,5 +26,47 @@ composer require laravel/jetstream
 
 - run this command to install the chosen stack. (`--teams --api --dark` are optional flags)
 ```bash
-php artisan jetstream:install inertia --teams --api --dark
+sail artisan jetstream:install inertia --teams --api --dark
 ```
+
+- run the migration 
+```bash
+sail artisan migrate
+```
+
+## Local Development
+
+- if you dont have an alias to use `sail`instead of `./vendor/bin/sail` run the following command
+```bash
+alias sail='[ -f sail ] && sh sail || sh vendor/bin/sail'
+```
+
+- to start the environment
+```bash
+sail up -d
+```
+
+- any command you usually run with `php` in the beginning you simply change to `sail`. (for example)
+```bash
+# instead of
+php artisan migrate
+# use this instead
+sail artisan migrate
+```
+
+- to stop the environment
+```bash
+sail down
+```
+
+- to see live changes to your project frontend open a seperate terminal window and run the following command
+```bash
+npm run dev
+```
+
+- to push the changes to the app container without using the dev server run the following command
+```bash
+npm run build
+```
+
+## Production Deployment

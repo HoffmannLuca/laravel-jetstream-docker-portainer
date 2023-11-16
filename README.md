@@ -36,6 +36,8 @@ sail artisan migrate
 
 ## Local Development
 
+- in your terminal `cd` into the `src` directory
+
 - if you dont have an alias to use `sail`instead of `./vendor/bin/sail` run the following command
 ```bash
 alias sail='[ -f sail ] && sh sail || sh vendor/bin/sail'

@@ -48,17 +48,17 @@ alias sail='[ -f sail ] && sh sail || sh vendor/bin/sail'
 sail up -d
 ```
 
+- to stop the environment
+```bash
+sail down
+```
+
 - any command you usually run with `php` in the beginning you simply change to `sail`. (for example)
 ```bash
 # instead of
 php artisan migrate
-# use this instead
+# use this
 sail artisan migrate
-```
-
-- to stop the environment
-```bash
-sail down
 ```
 
 - to see live changes to your project frontend open a seperate terminal window and run the following command

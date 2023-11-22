@@ -4,4 +4,5 @@ README.md
 .gitattributes
 .gitignore
 .env.example
+.env.production
 .editorconfig

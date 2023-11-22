@@ -12,8 +12,10 @@ else
 fi
 
 # TODO merge stack env with current prod env
-chmod 0755 merge.sh;
-sh merge.sh stack.env .env;
+cat stack.env > tmp0
+cat .env >> tmp0
+
+awk -F "=" '!a[$1]++' tmp0 > tmp1 && mv tmp1 merged.env && rm tmp0
 #
 
 if [ ! -z "$WWWUSER" ]; then

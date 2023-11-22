@@ -11,6 +11,11 @@ else
     echo "env file exists."
 fi
 
+# TODO merge stack env with current prod env
+chmod 0755 merge.sh;
+sh merge.sh stack.env .env;
+#
+
 if [ ! -z "$WWWUSER" ]; then
     usermod -u $WWWUSER sail
 fi
@@ -35,10 +40,8 @@ chmod -R ugo+rw /.composer
 
     if [ $# -gt 0 ]; then
         exec gosu $WWWUSER "$@"
-        echo "- 1 -"
     else
         exec /usr/bin/supervisord -c /etc/supervisor/conf.d/supervisord.conf
-        echo "- 2 -"
     fi
 # elif [ "$role" = "queue" ]; then
 #     echo "Running the queue ... "

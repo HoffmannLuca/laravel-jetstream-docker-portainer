@@ -4,7 +4,7 @@ if [ ! -f "vendor/autoload.php" ]; then
     composer install --no-progress --no-interaction
 fi
 
-echo "Creating env file for env $APP_ENV"
+echo "Creating env file for production"
 cat stack.env > tmp0
 cat .env.production >> tmp0
 awk -F "=" '!a[$1]++' tmp0 > tmp1 && mv tmp1 .env && rm tmp0

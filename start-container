@@ -21,16 +21,14 @@ fi
 
 chmod -R ugo+rw /.composer
 
-role=${CONTAINER_ROLE:-app}
+# role=${CONTAINER_ROLE:-app}
 
-if [ "$role" = "app" ]; then
+# if [ "$role" = "app" ]; then
     php artisan migrate
     php artisan key:generate
     php artisan cache:clear
     php artisan config:clear
     php artisan route:clear
-    # php artisan serve --port=$PORT --host=0.0.0.0 --env=.env
-    # exec docker-php-entrypoint "$@"
 
     npm install
     npm run build
@@ -42,10 +40,10 @@ if [ "$role" = "app" ]; then
         exec /usr/bin/supervisord -c /etc/supervisor/conf.d/supervisord.conf
         echo "- 2 -"
     fi
-elif [ "$role" = "queue" ]; then
-    echo "Running the queue ... "
-    php /var/www/artisan queue:work --verbose --tries=3 --timeout=180
-elif [ "$role" = "websocket" ]; then
-    echo "Running the websocket server ... "
-    php artisan websockets:serve
-fi
+# elif [ "$role" = "queue" ]; then
+#     echo "Running the queue ... "
+#     php /var/www/artisan queue:work --verbose --tries=3 --timeout=180
+# elif [ "$role" = "websocket" ]; then
+#     echo "Running the websocket server ... "
+#     php artisan websockets:serve
+# fi

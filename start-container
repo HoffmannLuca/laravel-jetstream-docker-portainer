@@ -4,19 +4,10 @@ if [ ! -f "vendor/autoload.php" ]; then
     composer install --no-progress --no-interaction
 fi
 
-if [ ! -f ".env" ]; then
-    echo "Creating env file for env $APP_ENV"
-    cp .env.example .env
-else
-    echo "env file exists."
-fi
-
-# TODO merge stack env with current prod env
+echo "Creating env file for env $APP_ENV"
 cat stack.env > tmp0
-cat .env >> tmp0
-
-awk -F "=" '!a[$1]++' tmp0 > tmp1 && mv tmp1 merged.env && rm tmp0
-#
+cat .env.example >> tmp0
+awk -F "=" '!a[$1]++' tmp0 > tmp1 && mv tmp1 .env && rm tmp0
 
 if [ ! -z "$WWWUSER" ]; then
     usermod -u $WWWUSER sail
